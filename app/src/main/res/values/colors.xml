@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="navy_background">#06101A</color>
+    <color name="navy_surface">#0B1B29</color>
+    <color name="navy_surface_alt">#0D202F</color>
+    <color name="brand_orange">#FF7417</color>
+    <color name="brand_cyan">#30C6F2</color>
+    <color name="success_green">#36D39A</color>
+    <color name="danger_red">#FF5263</color>
+    <color name="text_primary">#ECF4FB</color>
+    <color name="text_muted">#8293A6</color>
+    <color name="border">#2B4052</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+</resources>
