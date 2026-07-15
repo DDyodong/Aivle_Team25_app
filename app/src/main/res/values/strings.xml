@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">스마트 조선소 TBM</string>
+    <string name="login_subtitle">현장 안전관리 · TBM</string>
+    <string name="login_title">반장 로그인</string>
+    <string name="login_instruction">사번과 비밀번호를 입력해 주세요.</string>
+    <string name="employee_hint">사번 (예: 240071)</string>
+    <string name="password">비밀번호</string><string name="login">로그인</string>
+    <string name="login_mock_hint">목업: 임의의 사번과 비밀번호로 로그인할 수 있습니다.</string>
+    <string name="system_tagline">AI 기반 스마트조선소 안전 관리 시스템</string>
+    <string name="page_safety">오늘의 안전</string><string name="page_tbm">오늘 TBM</string><string name="page_history">최근 기록</string><string name="page_my">마이페이지</string>
+    <string name="site_block">거제 사업장 · B-07 블록</string>
+    <string name="tbm_complete_chip">● TBM 완료</string><string name="tbm_pending_chip">● TBM 진행 전</string>
+    <string name="review_complete">완료 내용 확인</string><string name="start_tbm">오늘 TBM 시작하기</string>
+    <string name="completion_status">완료 여부</string><string name="completed">완료</string><string name="incomplete">미완료</string><string name="in_progress">진행 중</string>
+    <string name="participants">참여 인원</string><string name="people_count">%1$d명</string>
+    <string name="checklist">승인 조건 체크리스트</string><string name="required_before_work">작업 전 필수 확인</string>
+    <string name="check_harness">안전벨트 이중 체결</string><string name="check_access">작업 반경 10m 하부 통행 차단</string><string name="check_fall_protection">추락 방지시설 상태 확인</string>
+    <string name="recent_tbm">최근 TBM</string><string name="recent_three">최근 3건</string>
+    <string name="tbm_attendees">TBM 참석 인원</string><string name="count_hint">예: 8</string>
+    <string name="briefing_title">TBM 브리핑 내용</string><string name="briefing_caption">음성 인식 후 직접 수정할 수 있습니다.</string><string name="briefing_hint">오늘 작업의 위험요인과 안전조치를 입력해 주세요.</string>
+    <string name="speech_input">🎙  음성으로 TBM 입력</string><string name="worker_photo">작업자 사진</string><string name="photo_caption">교육 실시 증빙용 사진</string>
+    <string name="take_photo">사진 촬영</string><string name="choose_gallery">갤러리 선택</string><string name="update_tbm">TBM 내용 업데이트</string><string name="submit_tbm">TBM 완료 및 제출</string>
+    <string name="enter_participants">참여 인원을 입력해 주세요.</string><string name="enter_briefing">TBM 브리핑 내용을 입력해 주세요.</string><string name="tbm_completed_message">오늘 TBM이 완료되었습니다.</string>
+    <string name="history_description">완료된 TBM 브리핑과 교육 기록입니다.</string>
+    <string name="profile_role">반장 · 거제 사업장 · 배관 2팀</string><string name="employee_number">사번</string>
+    <string name="app_language">앱 언어</string><string name="app_language_caption">전체 메뉴와 TBM 안내에 적용</string><string name="app_language_description">선택한 언어로 앱 전체 메뉴와 TBM 안전 안내를 표시합니다.</string>
+    <string name="language_selector_collapsed">현재 언어: %1$s. 언어 목록 펼치기</string><string name="language_selector_expanded">현재 언어: %1$s. 언어 목록 접기</string>
+    <string name="language_scope">언어 적용 범위</string><string name="language_scope_items">• 앱 전체 메뉴와 버튼\n• TBM 실시간 자막 및 안전 안내\n• 음성 인식과 향후 TTS 긴급 경고</string><string name="logout">로그아웃</string>
+    <string name="auto_translation">자동 번역 전달</string><string name="safety_message">고소 작업 시 안전벨트를 이중 체결하고 작업 구역 하부 통행을 차단해 주세요.</string><string name="translation_pipeline">실제 API 연결 시 STT 원문 → 안전용어 보정 → 번역 → 자막/TTS 순서로 처리됩니다.</string>
+    <string name="nav_home">⌂\n홈</string><string name="nav_tbm">●\nTBM</string><string name="nav_history">▤\n기록</string><string name="nav_my">♙\n마이</string>
+    <string name="record_participants">%1$s  ·  참여 %2$d명</string><string name="record_selected">%1$s TBM 기록을 선택했습니다.</string>
+    <string name="speech_prompt">TBM 내용을 말씀해 주세요</string><string name="speech_unavailable">이 기기에서 음성 인식을 사용할 수 없습니다.</string><string name="camera_permission_required">사진 촬영을 위해 카메라 권한이 필요합니다.</string>
 </resources>

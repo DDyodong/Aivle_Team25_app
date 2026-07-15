@@ -22,7 +22,8 @@ public class MockTbmRepository implements TbmRepository {
     }
 
     @Override public boolean login(String employeeNo, String password) {
-        return !employeeNo.trim().isEmpty() && !password.trim().isEmpty();
+        return employeeNo != null && password != null
+                && !employeeNo.trim().isEmpty() && !password.trim().isEmpty();
     }
 
     @Override public TbmRecord getTodayTbm() { return today; }
@@ -32,6 +33,7 @@ public class MockTbmRepository implements TbmRepository {
     @Override public void completeTodayTbm(int participants, String briefing, boolean hasPhoto) {
         today = new TbmRecord(today.id, today.permitId, today.date, today.workName,
                 today.block, participants, briefing, true);
+        records.removeIf(record -> record.id.equals(today.id));
         records.add(0, today);
     }
 }

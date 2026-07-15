@@ -20,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Space;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +29,9 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
+import androidx.core.os.LocaleListCompat;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -76,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     private final ActivityResultLauncher<String> cameraPermissionLauncher = registerForActivityResult(
             new ActivityResultContracts.RequestPermission(), granted -> {
                 if (granted) cameraLauncher.launch(null);
-                else toast("사진 촬영을 위해 카메라 권한이 필요합니다.");
+                else toast(getString(R.string.camera_permission_required));
             });
 
     @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -101,36 +105,36 @@ public class MainActivity extends AppCompatActivity {
         TextView title = text("SMART SHIPYARD", 25, TEXT, true);
         title.setGravity(Gravity.CENTER);
         page.addView(title, matchWrap());
-        TextView sub = text("현장 안전관리 · TBM", 13, CYAN, true);
+        TextView sub = text(getString(R.string.login_subtitle), 13, CYAN, true);
         sub.setGravity(Gravity.CENTER);
         page.addView(sub, matchWrap());
         page.addView(space(42));
 
         LinearLayout card = card();
         card.setPadding(dp(22), dp(24), dp(22), dp(24));
-        card.addView(text("반장 로그인", 22, TEXT, true));
-        card.addView(label("사번과 비밀번호를 입력해 주세요."));
+        card.addView(text(getString(R.string.login_title), 22, TEXT, true));
+        card.addView(label(getString(R.string.login_instruction)));
         card.addView(space(22));
-        EditText employee = input("사번 (예: 240071)");
+        EditText employee = input(getString(R.string.employee_hint));
         card.addView(employee, fullHeight(54));
         card.addView(space(12));
-        EditText password = input("비밀번호");
+        EditText password = input(getString(R.string.password));
         password.setInputType(0x00000081);
         card.addView(password, fullHeight(54));
         card.addView(space(18));
-        Button login = primaryButton("로그인");
+        Button login = primaryButton(getString(R.string.login));
         login.setOnClickListener(v -> {
             if (repository.login(employee.getText().toString(), password.getText().toString())) showShell(0);
-            else toast("사번과 비밀번호를 입력해 주세요.");
+            else toast(getString(R.string.login_instruction));
         });
         card.addView(login, fullHeight(54));
         card.addView(space(12));
-        TextView hint = label("목업: 임의의 사번과 비밀번호로 로그인할 수 있습니다.");
+        TextView hint = label(getString(R.string.login_mock_hint));
         hint.setGravity(Gravity.CENTER);
         card.addView(hint, matchWrap());
         page.addView(card, fullWrap());
         page.addView(space(24));
-        page.addView(label("AI 기반 스마트조선소 안전 관리 시스템"), matchWrap());
+        page.addView(label(getString(R.string.system_tagline)), matchWrap());
         root.addView(scroll(page), matchMatch());
     }
 
@@ -141,8 +145,9 @@ public class MainActivity extends AppCompatActivity {
         header.setGravity(Gravity.CENTER_VERTICAL);
         header.setPadding(dp(20), dp(14), dp(14), dp(12));
         LinearLayout names = column(1);
-        names.addView(text(selected == 0 ? "오늘의 안전" : selected == 1 ? "오늘 TBM" : "최근 기록", 20, TEXT, true));
-        names.addView(text("거제 사업장 · B-07 블록", 10, MUTED, false));
+        int[] pageTitles = {R.string.page_safety, R.string.page_tbm, R.string.page_history, R.string.page_my};
+        names.addView(text(getString(pageTitles[selected]), 20, TEXT, true));
+        names.addView(text(getString(R.string.site_block), 10, MUTED, false));
         header.addView(names, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
         TextView avatar = text("김", 15, CYAN, true);
         avatar.setGravity(Gravity.CENTER);
@@ -150,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         header.addView(avatar, new LinearLayout.LayoutParams(dp(40), dp(40)));
         shell.addView(header, fullWrap());
 
-        View content = selected == 0 ? dashboard() : selected == 1 ? tbmForm() : history();
+        View content = selected == 0 ? dashboard() : selected == 1 ? tbmForm() : selected == 2 ? history() : myPage();
         shell.addView(content, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
         shell.addView(bottomNav(selected), fullHeight(72));
         root.addView(shell, matchMatch());
@@ -161,32 +166,34 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout page = contentColumn();
         LinearLayout hero = card();
         hero.setPadding(dp(20), dp(20), dp(20), dp(20));
-        TextView chip = text(today.completed ? "● TBM 완료" : "● TBM 진행 전", 11,
+        TextView chip = text(getString(today.completed ? R.string.tbm_complete_chip : R.string.tbm_pending_chip), 11,
                 today.completed ? GREEN : ORANGE, true);
         hero.addView(chip);
         hero.addView(space(12));
         hero.addView(text(today.workName, 21, TEXT, true));
         hero.addView(label(today.permitId + "  ·  " + today.block));
         hero.addView(space(20));
-        Button action = primaryButton(today.completed ? "완료 내용 확인" : "오늘 TBM 시작하기");
+        Button action = primaryButton(getString(today.completed ? R.string.review_complete : R.string.start_tbm));
         action.setOnClickListener(v -> showShell(1));
         hero.addView(action, fullHeight(50));
         page.addView(hero, fullWrap());
         page.addView(space(14));
 
         LinearLayout stats = row(10);
-        stats.addView(statCard("완료 여부", today.completed ? "완료" : "미완료", today.completed ? GREEN : ORANGE), weight());
-        stats.addView(statCard("참여 인원", today.participants + "명", CYAN), weight());
+        stats.addView(statCard(getString(R.string.completion_status), getString(today.completed ? R.string.completed : R.string.incomplete), today.completed ? GREEN : ORANGE), weight());
+        stats.addView(statCard(getString(R.string.participants), getString(R.string.people_count, today.participants), CYAN), weight());
         page.addView(stats, fullWrap());
         page.addView(space(24));
-        page.addView(sectionTitle("승인 조건 체크리스트", "작업 전 필수 확인"));
-        page.addView(checkItem("안전벨트 이중 체결", true));
-        page.addView(checkItem("작업 반경 10m 하부 통행 차단", true));
-        page.addView(checkItem("추락 방지시설 상태 확인", false));
+        page.addView(sectionTitle(getString(R.string.checklist), getString(R.string.required_before_work)));
+        page.addView(checkItem(getString(R.string.check_harness), true));
+        page.addView(checkItem(getString(R.string.check_access), true));
+        page.addView(checkItem(getString(R.string.check_fall_protection), false));
         page.addView(space(24));
-        page.addView(sectionTitle("최근 TBM", "최근 3건"));
-        for (TbmRecord record : repository.getRecentRecords().subList(0,
-                Math.min(3, repository.getRecentRecords().size()))) page.addView(recordCard(record));
+        page.addView(sectionTitle(getString(R.string.recent_tbm), getString(R.string.recent_three)));
+        java.util.List<TbmRecord> recentRecords = repository.getRecentRecords();
+        for (TbmRecord record : recentRecords.subList(0, Math.min(3, recentRecords.size()))) {
+            page.addView(recordCard(record));
+        }
         return scroll(page);
     }
 
@@ -200,26 +207,28 @@ public class MainActivity extends AppCompatActivity {
         info.addView(label(today.permitId + "  ·  " + today.block));
         page.addView(info, fullWrap());
         page.addView(space(20));
-        page.addView(sectionTitle("참여 인원", "TBM 참석 인원"));
-        EditText participants = input("예: 8");
+        page.addView(sectionTitle(getString(R.string.participants), getString(R.string.tbm_attendees)));
+        EditText participants = input(getString(R.string.count_hint));
         participants.setInputType(2);
         if (today.participants > 0) participants.setText(String.valueOf(today.participants));
         page.addView(participants, fullHeight(52));
         page.addView(space(20));
-        page.addView(sectionTitle("TBM 브리핑 내용", "음성 인식 후 직접 수정할 수 있습니다."));
-        briefingInput = input("오늘 작업의 위험요인과 안전조치를 입력해 주세요.");
+        page.addView(sectionTitle(getString(R.string.briefing_title), getString(R.string.briefing_caption)));
+        briefingInput = input(getString(R.string.briefing_hint));
         briefingInput.setGravity(Gravity.TOP);
         briefingInput.setPadding(dp(14), dp(14), dp(14), dp(14));
         briefingInput.setMinLines(5);
         briefingInput.setText(today.briefing);
         page.addView(briefingInput, fullWrap());
         page.addView(space(10));
-        Button speech = outlineButton("🎙  음성으로 TBM 입력");
+        Button speech = outlineButton(getString(R.string.speech_input));
         speech.setTextColor(CYAN);
         speech.setOnClickListener(v -> startSpeech());
         page.addView(speech, fullHeight(50));
+        page.addView(space(16));
+        page.addView(languageDeliveryCard());
         page.addView(space(22));
-        page.addView(sectionTitle("작업자 사진", "교육 실시 증빙용 사진"));
+        page.addView(sectionTitle(getString(R.string.worker_photo), getString(R.string.photo_caption)));
         photoPreview = new ImageView(this);
         photoPreview.setImageResource(android.R.drawable.ic_menu_camera);
         photoPreview.setColorFilter(MUTED);
@@ -228,24 +237,24 @@ public class MainActivity extends AppCompatActivity {
         page.addView(photoPreview, fullHeight(180));
         page.addView(space(10));
         LinearLayout photoActions = row(10);
-        Button camera = outlineButton("사진 촬영");
+        Button camera = outlineButton(getString(R.string.take_photo));
         camera.setOnClickListener(v -> openCamera());
-        Button gallery = outlineButton("갤러리 선택");
+        Button gallery = outlineButton(getString(R.string.choose_gallery));
         gallery.setOnClickListener(v -> galleryLauncher.launch("image/*"));
         photoActions.addView(camera, weightHeight(48));
         photoActions.addView(gallery, weightHeight(48));
         page.addView(photoActions, fullWrap());
         page.addView(space(24));
-        Button complete = primaryButton(today.completed ? "TBM 내용 업데이트" : "TBM 완료 및 제출");
+        Button complete = primaryButton(getString(today.completed ? R.string.update_tbm : R.string.submit_tbm));
         complete.setOnClickListener(v -> {
             int count;
             try { count = Integer.parseInt(participants.getText().toString()); }
             catch (Exception e) { count = 0; }
             String briefing = briefingInput.getText().toString().trim();
-            if (count < 1) { toast("참여 인원을 입력해 주세요."); return; }
-            if (briefing.isEmpty()) { toast("TBM 브리핑 내용을 입력해 주세요."); return; }
+            if (count < 1) { toast(getString(R.string.enter_participants)); return; }
+            if (briefing.isEmpty()) { toast(getString(R.string.enter_briefing)); return; }
             repository.completeTodayTbm(count, briefing, hasPhoto);
-            toast("오늘 TBM이 완료되었습니다.");
+            toast(getString(R.string.tbm_completed_message));
             showShell(0);
         });
         page.addView(complete, fullHeight(54));
@@ -255,10 +264,156 @@ public class MainActivity extends AppCompatActivity {
 
     private View history() {
         LinearLayout page = contentColumn();
-        page.addView(label("완료된 TBM 브리핑과 교육 기록입니다."));
+        page.addView(label(getString(R.string.history_description)));
         page.addView(space(14));
         for (TbmRecord record : repository.getRecentRecords()) page.addView(recordCard(record));
         return scroll(page);
+    }
+
+    private View myPage() {
+        LinearLayout page = contentColumn();
+        LinearLayout profile = card();
+        profile.setGravity(Gravity.CENTER_HORIZONTAL);
+        TextView avatar = text("김", 25, CYAN, true);
+        avatar.setGravity(Gravity.CENTER);
+        avatar.setBackground(shape(SURFACE_ALT, CYAN, 64));
+        profile.addView(avatar, new LinearLayout.LayoutParams(dp(64), dp(64)));
+        profile.addView(space(12));
+        TextView name = text("김반장", 20, TEXT, true);
+        name.setGravity(Gravity.CENTER);
+        profile.addView(name, matchWrap());
+        TextView role = label(getString(R.string.profile_role));
+        role.setGravity(Gravity.CENTER);
+        profile.addView(role, matchWrap());
+        profile.addView(space(16));
+        LinearLayout employee = row(8);
+        employee.addView(label(getString(R.string.employee_number)), weight());
+        employee.addView(text("240071", 12, TEXT, true));
+        profile.addView(employee, fullWrap());
+        page.addView(profile, fullWrap());
+        page.addView(space(22));
+        page.addView(sectionTitle(getString(R.string.app_language), getString(R.string.app_language_caption)));
+
+        LinearLayout languageCard = card();
+        languageCard.addView(label(getString(R.string.app_language_description)));
+        languageCard.addView(space(10));
+
+        LinearLayout languageHeader = row(8);
+        languageHeader.setGravity(Gravity.CENTER_VERTICAL);
+        languageHeader.setPadding(dp(14), dp(12), dp(14), dp(12));
+        languageHeader.setBackground(shape(SURFACE_ALT, BORDER, 9));
+        TextView selectedLanguage = text(currentLanguageName(), 14, TEXT, true);
+        TextView expandIndicator = text("▼", 12, ORANGE, true);
+        languageHeader.addView(selectedLanguage, weight());
+        languageHeader.addView(expandIndicator);
+        languageHeader.setContentDescription(getString(R.string.language_selector_collapsed, currentLanguageName()));
+
+        RadioGroup group = new RadioGroup(this);
+        group.setVisibility(View.GONE);
+        String[] languages = {
+                "한국어", "English", "Tiếng Việt", "नेपाली", "O‘zbekcha", "中文",
+                "스리랑카 (සිංහල)", "스리랑카 (தமிழ்)", "Bahasa Indonesia", "ไทย",
+                "Filipino", "မြန်မာဘာသာ"
+        };
+        String[] languageTags = {
+                "ko", "en", "vi", "ne", "uz", "zh", "si", "ta", "id", "th", "fil", "my"
+        };
+        String activeTag = currentLanguageTag();
+        for (int index = 0; index < languages.length; index++) {
+            String language = languages[index];
+            String languageTag = languageTags[index];
+            RadioButton radio = new RadioButton(this);
+            radio.setText(language);
+            radio.setTextColor(TEXT);
+            radio.setTextSize(14);
+            radio.setButtonTintList(android.content.res.ColorStateList.valueOf(ORANGE));
+            radio.setPadding(0, dp(7), 0, dp(7));
+            radio.setChecked(languageTag.equals(activeTag));
+            radio.setOnClickListener(v -> {
+                if (!languageTag.equals(currentLanguageTag())) {
+                    AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(languageTag));
+                }
+            });
+            group.addView(radio, fullWrap());
+        }
+        languageHeader.setOnClickListener(v -> {
+            boolean shouldExpand = group.getVisibility() != View.VISIBLE;
+            group.setVisibility(shouldExpand ? View.VISIBLE : View.GONE);
+            expandIndicator.setText(shouldExpand ? "▲" : "▼");
+            languageHeader.setContentDescription(getString(
+                    shouldExpand ? R.string.language_selector_expanded : R.string.language_selector_collapsed,
+                    currentLanguageName()));
+        });
+        languageCard.addView(languageHeader, fullWrap());
+        languageCard.addView(group, fullWrap());
+        page.addView(languageCard, fullWrap());
+        page.addView(space(14));
+
+        LinearLayout notice = card();
+        notice.addView(text(getString(R.string.language_scope), 14, CYAN, true));
+        notice.addView(space(6));
+        notice.addView(label(getString(R.string.language_scope_items)));
+        page.addView(notice, fullWrap());
+        page.addView(space(24));
+        Button logout = outlineButton(getString(R.string.logout));
+        logout.setTextColor(RED);
+        logout.setOnClickListener(v -> showLogin());
+        page.addView(logout, fullHeight(50));
+        return scroll(page);
+    }
+
+    private View languageDeliveryCard() {
+        String language = currentLanguageName();
+        LinearLayout box = card();
+        box.setBackground(shape(SURFACE_ALT, CYAN, 10));
+        LinearLayout title = row(8);
+        title.addView(text(getString(R.string.auto_translation), 13, CYAN, true), weight());
+        title.addView(text(language, 11, ORANGE, true));
+        box.addView(title);
+        box.addView(space(9));
+        box.addView(text(getString(R.string.safety_message), 13, TEXT, false));
+        box.addView(space(8));
+        box.addView(label(getString(R.string.translation_pipeline)));
+        return box;
+    }
+
+    private String currentLanguageTag() {
+        LocaleListCompat locales = AppCompatDelegate.getApplicationLocales();
+        Locale locale = locales.isEmpty() ? Locale.getDefault() : locales.get(0);
+        String language = locale == null ? "ko" : locale.getLanguage();
+        switch (language) {
+            case "en":
+            case "vi":
+            case "ne":
+            case "uz":
+            case "zh":
+            case "si":
+            case "ta":
+            case "id":
+            case "th":
+            case "fil":
+            case "my":
+                return language;
+            default:
+                return "ko";
+        }
+    }
+
+    private String currentLanguageName() {
+        switch (currentLanguageTag()) {
+            case "en": return "English";
+            case "vi": return "Tiếng Việt";
+            case "ne": return "नेपाली";
+            case "zh": return "中文";
+            case "uz": return "O‘zbekcha";
+            case "si": return "스리랑카 (සිංහල)";
+            case "ta": return "스리랑카 (தமிழ்)";
+            case "id": return "Bahasa Indonesia";
+            case "th": return "ไทย";
+            case "fil": return "Filipino";
+            case "my": return "မြန်မာဘာသာ";
+            default: return "한국어";
+        }
     }
 
     private LinearLayout bottomNav(int selected) {
@@ -266,7 +421,8 @@ public class MainActivity extends AppCompatActivity {
         nav.setGravity(Gravity.CENTER);
         nav.setPadding(dp(8), dp(7), dp(8), dp(8));
         nav.setBackground(shape(SURFACE, BORDER, 0));
-        String[] labels = {"⌂\n홈", "●\nTBM 작성", "▤\n기록"};
+        String[] labels = {getString(R.string.nav_home), getString(R.string.nav_tbm),
+                getString(R.string.nav_history), getString(R.string.nav_my)};
         for (int i = 0; i < labels.length; i++) {
             final int index = i;
             Button button = new Button(this);
@@ -287,11 +443,11 @@ public class MainActivity extends AppCompatActivity {
         item.setPadding(dp(16), dp(15), dp(16), dp(15));
         LinearLayout top = row(8);
         top.addView(text(record.date, 11, CYAN, true), weight());
-        top.addView(text(record.completed ? "완료" : "진행 중", 10, record.completed ? GREEN : ORANGE, true));
+        top.addView(text(getString(record.completed ? R.string.completed : R.string.in_progress), 10, record.completed ? GREEN : ORANGE, true));
         item.addView(top);
         item.addView(space(7));
         item.addView(text(record.workName, 15, TEXT, true));
-        item.addView(label(record.block + "  ·  참여 " + record.participants + "명"));
+        item.addView(label(getString(R.string.record_participants, record.block, record.participants)));
         item.addView(space(10));
         TextView body = label(record.briefing);
         body.setMaxLines(2);
@@ -299,7 +455,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout.LayoutParams lp = fullWrap();
         lp.setMargins(0, 0, 0, dp(10));
         item.setLayoutParams(lp);
-        item.setOnClickListener(v -> toast(record.date + " TBM 기록을 선택했습니다."));
+        item.setOnClickListener(v -> toast(getString(R.string.record_selected, record.date)));
         return item;
     }
 
@@ -341,10 +497,10 @@ public class MainActivity extends AppCompatActivity {
     private void startSpeech() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.KOREAN.toLanguageTag());
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "TBM 내용을 말씀해 주세요");
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, currentLanguageTag());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.speech_prompt));
         try { speechLauncher.launch(intent); }
-        catch (Exception e) { toast("이 기기에서 음성 인식을 사용할 수 없습니다."); }
+        catch (Exception e) { toast(getString(R.string.speech_unavailable)); }
     }
 
     private String normalizeSafetyTerms(String raw) {
