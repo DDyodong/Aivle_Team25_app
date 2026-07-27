@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">스마트 조선소 TBM</string>
+    <string name="app_name">스마트 조선소 작업자</string>
     <string name="login_subtitle">현장 안전관리 · TBM</string>
     <string name="login_title">반장 로그인</string>
     <string name="login_instruction">사번과 비밀번호를 입력해 주세요.</string>

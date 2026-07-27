@@ -2,9 +2,6 @@ package com.example.app;
 
 import org.junit.Test;
 
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -15,26 +12,24 @@ import static org.junit.Assert.assertTrue;
  */
 public class ExampleUnitTest {
     @Test
-    public void loginRejectsNullAndBlankCredentials() {
-        MockTbmRepository repository = new MockTbmRepository();
+    public void workerRoleIsRecognized() {
+        ApiClient.Session worker = new ApiClient.Session(
+                "token", 1L, "worker", "작업자", java.util.List.of("WORKER")
+        );
+        ApiClient.Session admin = new ApiClient.Session(
+                "token", 2L, "admin", "관리자", java.util.List.of("ADMIN")
+        );
 
-        assertFalse(repository.login(null, "password"));
-        assertFalse(repository.login("employee", null));
-        assertFalse(repository.login(" ", "password"));
-        assertTrue(repository.login("240071", "password"));
+        assertTrue(worker.isWorker());
+        assertFalse(admin.isWorker());
     }
 
     @Test
-    public void completingTodayTbmUpdatesExistingHistoryRecord() {
-        MockTbmRepository repository = new MockTbmRepository();
+    public void missingWorkerRoleIsRejected() {
+        ApiClient.Session session = new ApiClient.Session(
+                "token", 3L, "viewer", "조회자", java.util.List.of()
+        );
 
-        repository.completeTodayTbm(8, "first briefing", true);
-        repository.completeTodayTbm(9, "updated briefing", true);
-
-        List<TbmRecord> records = repository.getRecentRecords();
-        assertEquals(4, records.size());
-        assertEquals(repository.getTodayTbm().id, records.get(0).id);
-        assertEquals(9, records.get(0).participants);
-        assertEquals("updated briefing", records.get(0).briefing);
+        assertFalse(session.isWorker());
     }
 }
