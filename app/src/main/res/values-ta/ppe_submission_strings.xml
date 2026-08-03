@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ws_ppe_submission_complete">✓ பாதுகாப்பு மேலாளருக்கு அனுப்பப்பட்டது.</string>
+    <string name="ws_ppe_submission_title">பாதுகாப்பு உபகரணப் படத்தை அனுப்பவும்</string>
+    <string name="ws_ppe_submission_guide">தலைக்கவசம், பாதுகாப்புப் பட்டை மற்றும் வெல்டிங் முகக்கவசம் தெளிவாகத் தெரியும் படத்தை எடுக்கவும். கீழே பாதுகாப்புக் காலணி மற்றும் வேலை உடையை உறுதிப்படுத்தவும்.</string>
+    <string name="ws_ppe_submission_caption">படத்தையும் கைமுறை உறுதிப்படுத்தல்களையும் பாதுகாப்பு மேலாளருக்கு அனுப்பவும்.</string>
+    <string name="ws_submit_ppe_photo">பாதுகாப்பு மேலாளருக்கு அனுப்பவும்</string>
+    <string name="ws_submitting_ppe_photo">பாதுகாப்பு மேலாளருக்கு அனுப்பப்படுகிறது…</string>
+    <string name="ws_ppe_delivered">பாதுகாப்பு மேலாளருக்கு அனுப்பப்பட்டது.</string>
+</resources>

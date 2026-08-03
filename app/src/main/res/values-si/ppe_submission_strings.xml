@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ws_ppe_submission_complete">✓ ආරක්ෂක කළමනාකරුට යවන ලදී.</string>
+    <string name="ws_ppe_submission_title">ආරක්ෂක උපකරණ ඡායාරූපය යවන්න</string>
+    <string name="ws_ppe_submission_guide">හිස්වැසුම, ආරක්ෂක පටි සහ වෙල්ඩින් මුහුණු ආවරණය පැහැදිලිව පෙනෙන ඡායාරූපයක් ගන්න. පහතින් ආරක්ෂක සපත්තු සහ වැඩ ඇඳුම තහවුරු කරන්න.</string>
+    <string name="ws_ppe_submission_caption">ඡායාරූපය සහ අතින් කළ තහවුරු කිරීම් ආරක්ෂක කළමනාකරුට යවන්න.</string>
+    <string name="ws_submit_ppe_photo">ආරක්ෂක කළමනාකරුට යවන්න</string>
+    <string name="ws_submitting_ppe_photo">ආරක්ෂක කළමනාකරුට යවමින්…</string>
+    <string name="ws_ppe_delivered">ආරක්ෂක කළමනාකරුට යවන ලදී.</string>
+</resources>

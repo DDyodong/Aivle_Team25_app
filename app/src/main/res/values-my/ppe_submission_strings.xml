@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ws_ppe_submission_complete">✓ ဘေးကင်းရေးမန်နေဂျာထံ ပို့ပြီးပါပြီ။</string>
+    <string name="ws_ppe_submission_title">ဘေးကင်းရေးပစ္စည်း ဓာတ်ပုံပို့ရန်</string>
+    <string name="ws_ppe_submission_guide">ဦးထုပ်၊ လုံခြုံရေးကြိုးနှင့် ဂဟေမျက်နှာဖုံးကို ရှင်းလင်းစွာမြင်ရသည့် ဓာတ်ပုံရိုက်ပါ။ အောက်တွင် ဘေးကင်းရေးဖိနပ်နှင့် အလုပ်ဝတ်စုံကို အတည်ပြုပါ။</string>
+    <string name="ws_ppe_submission_caption">ဓာတ်ပုံနှင့် ကိုယ်တိုင်အတည်ပြုချက်များကို ဘေးကင်းရေးမန်နေဂျာထံ ပို့ပါ။</string>
+    <string name="ws_submit_ppe_photo">ဘေးကင်းရေးမန်နေဂျာထံ ပို့ရန်</string>
+    <string name="ws_submitting_ppe_photo">ဘေးကင်းရေးမန်နေဂျာထံ ပို့နေသည်…</string>
+    <string name="ws_ppe_delivered">ဘေးကင်းရေးမန်နေဂျာထံ ပို့ပြီးပါပြီ။</string>
+</resources>

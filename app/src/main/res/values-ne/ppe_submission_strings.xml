@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ws_ppe_submission_complete">✓ सुरक्षा व्यवस्थापकलाई पठाइयो।</string>
+    <string name="ws_ppe_submission_title">सुरक्षा उपकरणको फोटो पठाउनुहोस्</string>
+    <string name="ws_ppe_submission_guide">हेल्मेट, सुरक्षा बेल्ट र वेल्डिङ मास्क स्पष्ट देखिने फोटो लिनुहोस्। तल सुरक्षा जुत्ता र कामको पोसाक पुष्टि गर्नुहोस्।</string>
+    <string name="ws_ppe_submission_caption">फोटो र म्यानुअल पुष्टि सुरक्षा व्यवस्थापकलाई पठाउनुहोस्।</string>
+    <string name="ws_submit_ppe_photo">सुरक्षा व्यवस्थापकलाई पठाउनुहोस्</string>
+    <string name="ws_submitting_ppe_photo">सुरक्षा व्यवस्थापकलाई पठाउँदै…</string>
+    <string name="ws_ppe_delivered">सुरक्षा व्यवस्थापकलाई पठाइयो।</string>
+</resources>

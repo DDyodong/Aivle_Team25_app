@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ws_ppe_submission_complete">✓ Naipadala na sa safety manager.</string>
+    <string name="ws_ppe_submission_title">Magsumite ng safety equipment photo</string>
+    <string name="ws_ppe_submission_guide">Kumuha ng malinaw na larawan ng helmet, harness, at welding mask. Kumpirmahin sa ibaba ang safety shoes at workwear.</string>
+    <string name="ws_ppe_submission_caption">Ipadala ang larawan at manual checks sa safety manager.</string>
+    <string name="ws_submit_ppe_photo">Ipadala sa safety manager</string>
+    <string name="ws_submitting_ppe_photo">Ipinapadala sa safety manager…</string>
+    <string name="ws_ppe_delivered">Naipadala na sa safety manager.</string>
+</resources>

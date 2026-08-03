@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ws_ppe_submission_complete">✓ Đã gửi cho quản lý an toàn.</string>
+    <string name="ws_ppe_submission_title">Gửi ảnh thiết bị an toàn</string>
+    <string name="ws_ppe_submission_guide">Chụp rõ mũ bảo hộ, dây đai an toàn và mặt nạ hàn. Xác nhận giày và quần áo bảo hộ bên dưới.</string>
+    <string name="ws_ppe_submission_caption">Gửi ảnh và nội dung xác nhận cho quản lý an toàn.</string>
+    <string name="ws_submit_ppe_photo">Gửi ảnh cho quản lý an toàn</string>
+    <string name="ws_submitting_ppe_photo">Đang gửi cho quản lý an toàn…</string>
+    <string name="ws_ppe_delivered">Đã gửi cho quản lý an toàn.</string>
+</resources>

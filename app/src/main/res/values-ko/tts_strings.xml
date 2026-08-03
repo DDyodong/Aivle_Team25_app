@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tts_play">▶ 음성으로 듣기</string>
+    <string name="tts_stop">■ 정지</string>
+    <string name="tts_not_ready">음성 엔진을 준비하고 있습니다. 잠시 후 다시 시도해 주세요.</string>
+    <string name="tts_initialization_failed">음성 엔진을 시작하지 못했습니다.</string>
+    <string name="tts_language_data_missing">이 언어의 음성 데이터 설치가 필요합니다.</string>
+    <string name="tts_language_not_supported">이 기기에서는 선택한 언어의 음성을 지원하지 않습니다.</string>
+    <string name="tts_install_unavailable">음성 데이터 설치 화면을 열 수 없습니다.</string>
+    <string name="tts_playback_failed">음성을 재생하지 못했습니다.</string>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ws_ppe_submission_complete">✓ Sent to the safety manager.</string>
+    <string name="ws_ppe_submission_title">Submit safety equipment photo</string>
+    <string name="ws_ppe_submission_guide">Take a clear photo showing the helmet, harness, and welding mask. Confirm safety shoes and workwear below.</string>
+    <string name="ws_ppe_submission_caption">Send the photo and manual checks to the safety manager.</string>
+    <string name="ws_submit_ppe_photo">Send photo to safety manager</string>
+    <string name="ws_submitting_ppe_photo">Sending to the safety manager…</string>
+    <string name="ws_ppe_delivered">Sent to the safety manager.</string>
+</resources>

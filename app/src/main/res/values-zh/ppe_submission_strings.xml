@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ws_ppe_submission_complete">✓ 已发送给安全管理员。</string>
+    <string name="ws_ppe_submission_title">提交安全装备照片</string>
+    <string name="ws_ppe_submission_guide">请清晰拍摄安全帽、安全带和焊接面罩，并在下方确认安全鞋和工作服。</string>
+    <string name="ws_ppe_submission_caption">将照片和人工确认内容发送给安全管理员。</string>
+    <string name="ws_submit_ppe_photo">发送给安全管理员</string>
+    <string name="ws_submitting_ppe_photo">正在发送给安全管理员…</string>
+    <string name="ws_ppe_delivered">已发送给安全管理员。</string>
+</resources>

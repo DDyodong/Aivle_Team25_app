@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ws_ppe_submission_complete">✓ 안전관리자에게 전달되었습니다.</string>
+    <string name="ws_ppe_submission_title">안전 장비 사진 제출</string>
+    <string name="ws_ppe_submission_guide">안전모(Helmet), 하네스(Harness), 용접면(Welding mask)이 잘 보이도록 촬영해 주세요. 안전화와 안전복은 아래에서 직접 확인합니다.</string>
+    <string name="ws_ppe_submission_caption">사진과 착용 확인 내용을 안전관리자에게 전달합니다.</string>
+    <string name="ws_submit_ppe_photo">안전관리자에게 사진 제출</string>
+    <string name="ws_submitting_ppe_photo">안전관리자에게 전송 중…</string>
+    <string name="ws_ppe_delivered">안전관리자에게 전달되었습니다.</string>
+</resources>

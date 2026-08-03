@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ws_ppe_submission_complete">✓ Telah dikirim ke manajer keselamatan.</string>
+    <string name="ws_ppe_submission_title">Kirim foto perlengkapan keselamatan</string>
+    <string name="ws_ppe_submission_guide">Ambil foto yang jelas memperlihatkan helm, sabuk keselamatan, dan masker las. Konfirmasikan sepatu dan pakaian kerja di bawah.</string>
+    <string name="ws_ppe_submission_caption">Kirim foto dan konfirmasi manual ke manajer keselamatan.</string>
+    <string name="ws_submit_ppe_photo">Kirim ke manajer keselamatan</string>
+    <string name="ws_submitting_ppe_photo">Mengirim ke manajer keselamatan…</string>
+    <string name="ws_ppe_delivered">Telah dikirim ke manajer keselamatan.</string>
+</resources>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ws_app_subtitle">현장 작업자 안전 앱</string>
+    <string name="ws_worker">현장 작업자</string>
+    <string name="ws_demo">데모</string>
+    <string name="ws_login_title">작업자 로그인</string>
+    <string name="ws_login_instruction">웹에서 가입한 계정으로 로그인해 주세요.</string>
+    <string name="ws_username">아이디</string>
+    <string name="ws_password">비밀번호</string>
+    <string name="ws_login">로그인</string>
+    <string name="ws_logging_in">로그인 중…</string>
+    <string name="ws_login_required">아이디와 비밀번호를 입력해 주세요.</string>
+    <string name="ws_worker_only">작업자 계정만 이 앱을 사용할 수 있습니다.</string>
+    <string name="ws_demo_start">서버 없이 데모 시작</string>
+    <string name="ws_demo_hint">데모 모드에서는 모든 정보가 앱 내부 예시 데이터로 동작합니다.</string>
+    <string name="ws_connected_server">연결 서버: %1$s</string>
+
+    <string-array name="ws_page_titles">
+        <item>오늘 작업</item><item>TBM 청취</item><item>개인 체크</item><item>위험 신고</item><item>내 정보</item>
+    </string-array>
+    <string-array name="ws_nav_labels">
+        <item>⌂\n작업</item><item>▶\nTBM</item><item>✓\n체크</item><item>!\n신고</item><item>♙\n내 정보</item>
+    </string-array>
+
+    <string name="ws_today_loading">오늘 작업을 불러오는 중입니다.</string>
+    <string name="ws_no_work">오늘 배정된 작업이 없습니다.</string>
+    <string name="ws_refresh">새로고침</string>
+    <string name="ws_work_after_server">서버 연결 후 오늘 작업이 표시됩니다.</string>
+    <string name="ws_work_untitled">작업명 미정</string>
+    <string name="ws_no_permit_number">허가번호 없음</string>
+    <string name="ws_work_time">작업 시간</string>
+    <string name="ws_work_type">작업 유형</string>
+    <string name="ws_unspecified">미정</string>
+    <string name="ws_site_risk">현장 위험도</string>
+    <string name="ws_high_risk">고위험 작업</string>
+    <string name="ws_normal_work">일반 작업</string>
+    <string name="ws_required_conditions">필수 승인 조건</string>
+    <string name="ws_before_work">작업 전 진행</string>
+    <string name="ws_complete_in_order">순서대로 완료해 주세요</string>
+    <string name="ws_tbm_listen">TBM 안전 안내 청취</string>
+    <string name="ws_confirmed">확인 완료</string>
+    <string name="ws_listen_and_confirm">내용을 듣고 확인합니다.</string>
+    <string name="ws_personal_ppe_check">개인 보호구 체크</string>
+    <string name="ws_analysis_complete">판정 완료</string>
+    <string name="ws_photo_ppe_check">사진으로 안전 장비 착용 상태를 확인합니다.</string>
+    <string name="ws_report_hazard">현장 위험 신고하기</string>
+
+    <string name="ws_tbm_loading">TBM 안전 안내를 불러오는 중입니다.</string>
+    <string name="ws_no_tbm">오늘 확인할 TBM 안내가 없습니다.</string>
+    <string name="ws_today_tbm">오늘의 TBM 안전 안내</string>
+    <string name="ws_tbm_instruction">작업 전 내용을 끝까지 듣고 확인해 주세요.</string>
+    <string name="ws_no_tbm_content">등록된 안내 내용이 없습니다.</string>
+    <string name="ws_listen_voice">▶ 음성으로 듣기</string>
+    <string name="ws_stop">■ 정지</string>
+    <string name="ws_tbm_done">✓ TBM 확인 완료</string>
+    <string name="ws_i_confirmed">내용을 확인했습니다</string>
+    <string name="ws_demo_tbm_done">데모 TBM 확인이 완료되었습니다.</string>
+    <string name="ws_confirming">확인 처리 중…</string>
+    <string name="ws_tbm_confirmed_message">TBM 확인이 완료되었습니다.</string>
+
+    <string name="ws_ppe_done">✓ 오늘 개인 보호구 확인이 완료되었습니다.</string>
+    <string name="ws_ai_ppe_title">AI 안전 장비 확인</string>
+    <string name="ws_ai_ppe_guide">작업자의 상체와 안전모·안전벨트·용접면 등 안전 장비가 한 화면에 선명하게 보이도록 촬영해 주세요. 사진은 YOLO 보호구 모델로 판정됩니다.</string>
+    <string name="ws_ppe_photo">안전 장비 착용 사진</string>
+    <string name="ws_camera">카메라 촬영</string>
+    <string name="ws_gallery">갤러리 선택</string>
+    <string name="ws_manual_items">직접 확인 항목</string>
+    <string name="ws_unsupported_by_model">모델 미지원 장비</string>
+    <string name="ws_safety_shoes_check">안전화 착용 상태를 확인했습니다.</string>
+    <string name="ws_gloves_check">작업에 맞는 보호장갑을 착용했습니다.</string>
+    <string name="ws_workwear_check">작업복과 신체 노출 상태를 확인했습니다.</string>
+    <string name="ws_submit_ppe">AI 판정 후 개인 체크 제출</string>
+    <string name="ws_photo_required">안전 장비 착용 사진을 촬영해 주세요.</string>
+    <string name="ws_manual_required">직접 확인 항목을 모두 완료해 주세요.</string>
+    <string name="ws_analyzing_ppe">YOLO 보호구 판정 중…</string>
+    <string name="ws_demo_model">DEMO-YOLO · 실제 판정 아님</string>
+    <string name="ws_demo_ppe_done">데모 보호구 판정이 완료되었습니다. 실제 AI 결과가 아닙니다.</string>
+    <string name="ws_ppe_submit_done">개인 체크가 완료되었습니다.</string>
+    <string name="ws_ppe_retry">필수 안전 장비를 다시 확인해 주세요.</string>
+    <string name="ws_ai_pass">AI 판정 통과</string>
+    <string name="ws_ai_retry">AI 재촬영 필요</string>
+    <string name="ws_helmet">안전모</string>
+    <string name="ws_harness">안전벨트</string>
+    <string name="ws_welding_mask">용접면</string>
+    <string name="ws_model">판정 모델</string>
+    <string name="ws_unavailable">판정 불가</string>
+    <string name="ws_worn">착용 확인</string>
+    <string name="ws_not_worn">미착용</string>
+
+    <string name="ws_report_title">현장 위험 신고</string>
+    <string name="ws_report_guide">위험 유형과 현장 사진, 상세 내용을 함께 제출합니다.</string>
+    <string name="ws_risk_type">위험 유형</string>
+    <string name="ws_hazard_photo">위험 현장 사진</string>
+    <string name="ws_report_hint">위험 상황과 위치를 구체적으로 입력해 주세요.</string>
+    <string name="ws_submit_report">위험 신고 접수</string>
+    <string name="ws_my_reports">내 신고 내역</string>
+    <string name="ws_loading">불러오는 중</string>
+    <string name="ws_count">%1$d건</string>
+    <string name="ws_no_reports">접수한 위험 신고가 없습니다.</string>
+    <string name="ws_report_photo_required">현장 사진을 첨부해 주세요.</string>
+    <string name="ws_report_detail_required">위험 상황의 상세 내용을 입력해 주세요.</string>
+    <string name="ws_submitting_report">신고 접수 중…</string>
+    <string name="ws_report_suffix">%1$s 신고</string>
+    <string name="ws_just_now">방금 전</string>
+    <string name="ws_demo_report_done">데모 위험 신고가 접수되었습니다.</string>
+    <string name="ws_report_done">%1$s 접수가 완료되었습니다.</string>
+    <string name="ws_report">신고</string>
+
+    <string-array name="ws_risk_labels">
+        <item>추락·고소작업 위험</item><item>보호구 미착용</item><item>화재·폭발 위험</item><item>장비·설비 이상</item>
+        <item>충돌·협착 위험</item><item>낙하물·중량물 위험</item><item>감전·전기 위험</item><item>질식·유해가스 위험</item>
+        <item>위험물·화학물질 누출</item><item>위험구역 접근</item><item>통로·정리정돈 불량</item><item>기타</item>
+    </string-array>
+
+    <string name="ws_permissions">사용 권한</string>
+    <string name="ws_permissions_value">작업 확인 · TBM · 개인 체크 · 위험 신고</string>
+    <string name="ws_app_language">앱 표시 언어</string>
+    <string name="ws_app_language_guide">선택한 언어를 앱의 모든 화면과 음성 안내에 적용합니다.</string>
+    <string name="ws_logout">로그아웃</string>
+    <string name="ws_camera_failed">카메라를 시작하지 못했습니다.</string>
+    <string name="ws_photo_failed">사진을 처리하지 못했습니다.</string>
+    <string name="ws_photo_too_large">사진은 10MB 이하만 사용할 수 있습니다.</string>
+    <string name="ws_gallery_failed">사진을 불러오지 못했습니다.</string>
+    <string name="ws_camera_permission">사진 촬영을 위해 카메라 권한이 필요합니다.</string>
+    <string name="ws_session_expired">로그인이 만료되었습니다. 다시 로그인해 주세요.</string>
+    <string name="ws_server_failed">서버에 연결하지 못했습니다.</string>
+
+    <string name="ws_status_approved">● 작업 승인 완료</string>
+    <string name="ws_status_conditional">● 조건부 승인</string>
+    <string name="ws_status_pending">● 검토 대기</string>
+    <string name="ws_status_unknown">● 상태 미정</string>
+    <string name="ws_location_unknown">위치 미정</string>
+    <string name="ws_no_conditions">등록된 승인 조건이 없습니다. 현장 관리자의 안내를 확인해 주세요.</string>
+    <string name="ws_report_received">접수 완료</string>
+    <string name="ws_report_processing">처리 중</string>
+    <string name="ws_report_resolved">조치 완료</string>
+
+    <string name="ws_demo_worker">김작업자</string>
+    <string name="ws_demo_work_title">B-07 블록 상부 배관 조립 작업</string>
+    <string name="ws_demo_work_type">배관 조립</string>
+    <string name="ws_demo_site">거제 스마트 조선소</string>
+    <string name="ws_demo_conditions">안전모와 안전화를 반드시 착용합니다.\n• 고소 작업 전 추락 방지시설을 확인합니다.\n• 작업 반경 하부의 출입을 통제합니다.</string>
+</resources>

@@ -38,7 +38,6 @@ import androidx.core.os.LocaleListCompat;
 
 import java.io.File;
 import java.io.InputStream;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -93,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
     private byte[] ppePhoto;
     private byte[] reportPhoto;
     private boolean safetyShoesChecked;
-    private boolean glovesChecked;
     private boolean workwearChecked;
     private int reportTypeIndex;
     private String reportDescription = "";
@@ -281,8 +279,8 @@ public class MainActivity extends AppCompatActivity {
         page.addView(sectionTitle(getString(R.string.ws_before_work), getString(R.string.ws_complete_in_order)));
         page.addView(actionCard("1", getString(R.string.ws_tbm_listen), briefing != null && briefing.confirmed
                 ? getString(R.string.ws_confirmed) : getString(R.string.ws_listen_and_confirm), 1));
-        page.addView(actionCard("2", getString(R.string.ws_personal_ppe_check), personalCheck != null && personalCheck.passed
-                ? getString(R.string.ws_analysis_complete) : getString(R.string.ws_photo_ppe_check), 2));
+        page.addView(actionCard("2", getString(R.string.ws_personal_ppe_check), personalCheck != null
+                ? getString(R.string.ws_ppe_submission_complete) : getString(R.string.ws_ppe_submission_caption), 2));
         page.addView(space(12));
         Button danger = dangerButton(getString(R.string.ws_report_hazard));
         danger.setOnClickListener(view -> showShell(3));
@@ -347,15 +345,15 @@ public class MainActivity extends AppCompatActivity {
     private View personalCheck() {
         LinearLayout page = contentColumn();
         if (!personalCheckLoaded && !personalCheckLoading) loadPersonalCheck();
-        if (personalCheck != null && personalCheck.passed) {
-            page.addView(statusCard(getString(R.string.ws_ppe_done), GREEN));
+        if (personalCheck != null) {
+            page.addView(statusCard(getString(R.string.ws_ppe_submission_complete), GREEN));
             page.addView(space(16));
         }
 
         LinearLayout guide = card();
-        guide.addView(text(getString(R.string.ws_ai_ppe_title), 18, TEXT, true));
+        guide.addView(text(getString(R.string.ws_ppe_submission_title), 18, TEXT, true));
         guide.addView(space(7));
-        guide.addView(label(getString(R.string.ws_ai_ppe_guide)));
+        guide.addView(label(getString(R.string.ws_ppe_submission_guide)));
         page.addView(guide, fullWrap());
         page.addView(space(16));
 
@@ -377,19 +375,12 @@ public class MainActivity extends AppCompatActivity {
         CheckBox shoes = checkBox(getString(R.string.ws_safety_shoes_check), safetyShoesChecked);
         shoes.setOnCheckedChangeListener((button, checked) -> safetyShoesChecked = checked);
         page.addView(shoes, fullWrap());
-        CheckBox gloves = checkBox(getString(R.string.ws_gloves_check), glovesChecked);
-        gloves.setOnCheckedChangeListener((button, checked) -> glovesChecked = checked);
-        page.addView(gloves, fullWrap());
         CheckBox workwear = checkBox(getString(R.string.ws_workwear_check), workwearChecked);
         workwear.setOnCheckedChangeListener((button, checked) -> workwearChecked = checked);
         page.addView(workwear, fullWrap());
         page.addView(space(16));
 
-        if (personalCheck != null) {
-            page.addView(ppeResultCard(personalCheck), fullWrap());
-            page.addView(space(16));
-        }
-        Button submit = primaryButton(getString(R.string.ws_submit_ppe));
+        Button submit = primaryButton(getString(R.string.ws_submit_ppe_photo));
         submit.setOnClickListener(view -> submitPersonalCheck(submit));
         page.addView(submit, fullHeight(56));
         page.addView(space(22));
@@ -531,22 +522,25 @@ public class MainActivity extends AppCompatActivity {
 
     private void submitPersonalCheck(Button button) {
         if (ppePhoto == null) { toast(getString(R.string.ws_photo_required)); return; }
-        if (!safetyShoesChecked || !glovesChecked || !workwearChecked) {
+        if (!safetyShoesChecked || !workwearChecked) {
             toast(getString(R.string.ws_manual_required));
             return;
         }
         button.setEnabled(false);
-        button.setText(R.string.ws_analyzing_ppe);
+        button.setText(R.string.ws_submitting_ppe_photo);
         runAsync(() -> {
             long fileId = apiClient.uploadImage(session.token, ppePhoto, "ppe_check", "ppe-check.jpg");
             return apiClient.submitPersonalCheck(session.token, permit == null ? null : permit.id, fileId,
-                    safetyShoesChecked, glovesChecked, workwearChecked);
+                    safetyShoesChecked, workwearChecked);
         }, value -> {
             personalCheck = value;
             personalCheckLoaded = true;
-            toast(empty(value.message, value.passed ? getString(R.string.ws_ppe_submit_done) : getString(R.string.ws_ppe_retry)));
+            ppePhoto = null;
+            safetyShoesChecked = false;
+            workwearChecked = false;
+            toast(getString(R.string.ws_ppe_delivered));
             showShell(2);
-        }, error -> { button.setEnabled(true); button.setText(R.string.ws_submit_ppe); });
+        }, error -> { button.setEnabled(true); button.setText(R.string.ws_submit_ppe_photo); });
     }
 
     private void submitReport(Button button) {
@@ -587,6 +581,8 @@ public class MainActivity extends AppCompatActivity {
         reportsLoaded = false;
         ppePhoto = null;
         reportPhoto = null;
+        safetyShoesChecked = false;
+        workwearChecked = false;
     }
 
     private void openCamera(PhotoPurpose purpose) {
@@ -714,18 +710,6 @@ public class MainActivity extends AppCompatActivity {
         return item;
     }
 
-    private LinearLayout ppeResultCard(ApiClient.PpeCheck result) {
-        LinearLayout box = card();
-        int color = result.passed ? GREEN : RED;
-        box.addView(text(result.passed ? getString(R.string.ws_ai_pass) : getString(R.string.ws_ai_retry), 17, color, true));
-        box.addView(space(9));
-        box.addView(infoRow(getString(R.string.ws_helmet), equipmentText(result.helmetOn, result.helmetConfidence)));
-        box.addView(infoRow(getString(R.string.ws_harness), equipmentText(result.harnessOn, null)));
-        box.addView(infoRow(getString(R.string.ws_welding_mask), equipmentText(result.weldingMaskOn, null)));
-        if (!result.model.isEmpty()) box.addView(infoRow(getString(R.string.ws_model), result.model));
-        return box;
-    }
-
     private View reportCard(ApiClient.SafetyReport report) {
         LinearLayout box = card();
         LinearLayout top = row();
@@ -851,13 +835,6 @@ public class MainActivity extends AppCompatActivity {
         if (raw == null || raw.isBlank()) return getString(R.string.ws_no_conditions);
         if (!raw.trim().startsWith("[")) return raw;
         return raw.replace("[", "").replace("]", "").replace("\"", "").replace(",", "\n• ");
-    }
-
-    private String equipmentText(Boolean worn, Double confidence) {
-        String value = worn == null ? getString(R.string.ws_unavailable)
-                : worn ? getString(R.string.ws_worn) : getString(R.string.ws_not_worn);
-        if (confidence != null) value += " · " + NumberFormat.getPercentInstance().format(confidence);
-        return value;
     }
 
     private String reportStatus(String status) {

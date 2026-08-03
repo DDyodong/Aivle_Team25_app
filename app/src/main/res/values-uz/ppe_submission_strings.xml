@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ws_ppe_submission_complete">✓ Xavfsizlik menejeriga yuborildi.</string>
+    <string name="ws_ppe_submission_title">Xavfsizlik jihozlari suratini yuborish</string>
+    <string name="ws_ppe_submission_guide">Kaska, xavfsizlik kamari va payvandlash niqobi aniq ko‘rinadigan surat oling. Quyida xavfsizlik poyabzali va ish kiyimini tasdiqlang.</string>
+    <string name="ws_ppe_submission_caption">Surat va qo‘lda tasdiqlangan ma’lumotlarni xavfsizlik menejeriga yuboring.</string>
+    <string name="ws_submit_ppe_photo">Xavfsizlik menejeriga yuborish</string>
+    <string name="ws_submitting_ppe_photo">Xavfsizlik menejeriga yuborilmoqda…</string>
+    <string name="ws_ppe_delivered">Xavfsizlik menejeriga yuborildi.</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tts_play">▶ Listen</string>
+    <string name="tts_stop">■ Stop</string>
+    <string name="tts_not_ready">The speech engine is starting. Please try again shortly.</string>
+    <string name="tts_initialization_failed">Could not start the speech engine.</string>
+    <string name="tts_language_data_missing">Voice data must be installed for this language.</string>
+    <string name="tts_language_not_supported">The selected language is not supported on this device.</string>
+    <string name="tts_install_unavailable">Could not open the voice data installer.</string>
+    <string name="tts_playback_failed">Could not play the briefing.</string>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ws_ppe_submission_complete">✓ ส่งให้ผู้จัดการความปลอดภัยแล้ว</string>
+    <string name="ws_ppe_submission_title">ส่งภาพอุปกรณ์ความปลอดภัย</string>
+    <string name="ws_ppe_submission_guide">ถ่ายภาพให้เห็นหมวกนิรภัย สายรัดนิรภัย และหน้ากากเชื่อมอย่างชัดเจน แล้วตรวจยืนยันรองเท้านิรภัยและชุดทำงานด้านล่าง</string>
+    <string name="ws_ppe_submission_caption">ส่งภาพและข้อมูลยืนยันให้ผู้จัดการความปลอดภัย</string>
+    <string name="ws_submit_ppe_photo">ส่งให้ผู้จัดการความปลอดภัย</string>
+    <string name="ws_submitting_ppe_photo">กำลังส่งให้ผู้จัดการความปลอดภัย…</string>
+    <string name="ws_ppe_delivered">ส่งให้ผู้จัดการความปลอดภัยแล้ว</string>
+</resources>
